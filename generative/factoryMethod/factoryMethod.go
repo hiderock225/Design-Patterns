@@ -14,7 +14,7 @@ const (
 )
 
 type IGun interface {
-	Fire()
+	Fire() bool
 	PrintDetails()
 }
 
@@ -23,8 +23,9 @@ type Gun struct {
 	power int
 }
 
-func (g *Gun) Fire() {
+func (g *Gun) Fire() bool {
 	logger.Trace("%s shoots", g.name)
+	return true
 }
 
 func (g *Gun) PrintDetails() {
