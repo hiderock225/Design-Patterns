@@ -6,7 +6,7 @@ import (
 
 func TestFactoryMethod(t *testing.T) {
 
-	ak47, err := CreateGun(Ak47)
+	ak47, err := CreateGun(AK_47)
 	if err != nil {
 		t.Errorf("CreateGun: %s", err)
 	}
@@ -14,7 +14,7 @@ func TestFactoryMethod(t *testing.T) {
 		t.Errorf("Gun cannot fire")
 	}
 
-	ak74, err := CreateGun(Ak74)
+	ak74, err := CreateGun(AK_74)
 	if err != nil {
 		t.Errorf("CreateGun: %s", err)
 	}
@@ -22,7 +22,7 @@ func TestFactoryMethod(t *testing.T) {
 		t.Errorf("Gun cannot fire")
 	}
 
-	ak103, err := CreateGun(Ak103)
+	ak103, err := CreateGun(AK_103)
 	if err != nil {
 		t.Errorf("CreateGun: %s", err)
 	}

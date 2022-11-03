@@ -5,12 +5,12 @@ import (
 	"fmt"
 )
 
-type GunType string
+type gunType string
 
 const (
-	Ak47  GunType = "Ak47"
-	Ak74  GunType = "Ak74"
-	Ak103 GunType = "Ak103"
+	AK_47  gunType = "Ak-47"
+	AK_74  gunType = "Ak-74"
+	AK_103 gunType = "Ak-103"
 )
 
 type IGun interface {
@@ -32,24 +32,54 @@ func (g *Gun) PrintDetails() {
 	logger.Trace("\nGun:\nName - %s\nPower - %d", g.name, g.power)
 }
 
-func CreateGun(gunType GunType) (IGun, error) {
-	switch gunType {
-	case Ak47:
-		return &Gun{
+type Ak47 struct {
+	Gun
+}
+
+func newAk47() IGun {
+	return &Ak47{
+		Gun{
 			name:  "Ak-47",
 			power: 3,
-		}, nil
-	case Ak74:
-		return &Gun{
+		},
+	}
+}
+
+type Ak74 struct {
+	Gun
+}
+
+func newAk74() IGun {
+	return &Ak74{
+		Gun{
 			name:  "Ak-74",
 			power: 7,
-		}, nil
-	case Ak103:
-		return &Gun{
+		},
+	}
+}
+
+type Ak103 struct {
+	Gun
+}
+
+func newAk103() IGun {
+	return &Ak103{
+		Gun{
 			name:  "Ak-103",
 			power: 5,
-		}, nil
-	default:
-		return nil, fmt.Errorf("unknown gun")
+		},
 	}
+}
+
+func CreateGun(gunType gunType) (IGun, error) {
+	if gunType == "Ak-47" {
+		return newAk47(), nil
+	}
+	if gunType == "Ak-74" {
+		return newAk74(), nil
+	}
+	if gunType == "Ak-103" {
+		return newAk103(), nil
+	}
+	return nil, fmt.Errorf("wrong gun type")
 }
