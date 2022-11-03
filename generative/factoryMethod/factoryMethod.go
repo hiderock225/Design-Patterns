@@ -16,6 +16,8 @@ const (
 type IGun interface {
 	Fire() bool
 	PrintDetails()
+	GetName() string
+	GetPower() int
 }
 
 type Gun struct {
@@ -30,6 +32,14 @@ func (g *Gun) Fire() bool {
 
 func (g *Gun) PrintDetails() {
 	logger.Trace("\nGun:\nName - %s\nPower - %d", g.name, g.power)
+}
+
+func (g *Gun) GetName() string {
+	return g.name
+}
+
+func (g *Gun) GetPower() int {
+	return g.power
 }
 
 type Ak47 struct {
